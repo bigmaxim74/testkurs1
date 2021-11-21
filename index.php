@@ -1,42 +1,40 @@
 <?php 
-$message = "Угадайте число в диапазоне  от 0 до 100!"; //Устанавливаем сообщение по-умолчанию 
+$message = "Divine a number in range from 0 .. 100!"; 
 
-if (isset($_POST["ugadat"])) { //Если данные были отправленны на сервер 
-   //В переменную $chislo записываем данные полученные из текстового поля с именем chislo 
-    $chislo = $_POST["chislo"];  
-    //В переменную $hidden_chislo записываем данные полученные  
-    //из скрытого поля с именем $hidden_chislo 
-    $hidden_chislo = $_POST["hidden_chislo"];  
+if (isset($_POST["ugadat"])) { 
+ 
+    $fuckednumber = $_POST["fuckednumber"];  
+ 
+    $hidden_fuckednumber = $_POST["hidden_fuckednumber"];  
      
-   //Если число из текстового поля меньше загаданного числа, то выводим сообщение 
-    if ($chislo < $_POST["hidden_chislo"]) {  
-        $message = "Загаданое число немножко больше $chislo";  
+
+    if ($fuckednumber < $_POST["hidden_fuckednumber"]) {  
+        $message = "The number is greater  $fuckednumber";  
     }  
-    //Если число из текстового поля больше загаданного числа, то выводим сообщение 
-    elseif ($chislo > $_POST["hidden_chislo"]) {  
-        $message = "Загаданое число немножко меньше $chislo"; 
-    } elseif ($chislo == $_POST["hidden_chislo"]) { //Если числа равны, то мы угадали!! 
-        $message = "Ура! Вы победили! <br/> Загадано новое число!"; 
-        $hidden_chislo = rand(0, 100); //Загадываем новое число! 
+ 
+    elseif ($fuckednumber > $_POST["hidden_fuckednumber"]) {  
+        $message = "The number is less $fuckednumber"; 
+    } elseif ($fuckednumber == $_POST["hidden_fuckednumber"]) { 
+        $message = "Cool - victory! <br/> I came up with a new number!"; 
+        $hidden_fuckednumber = rand(0, 100); 
     } 
-} else { //Если данные из формы не были отправленны 
-    $chislo = 0; //Устанавливаем значение текстового поля по-умолчанию  
-    $hidden_chislo = rand(0, 100); //Загадываем число 
+} else { 
+    $fuckednumber = 0; 
+    $hidden_fuckednumber = rand(0, 100); 
 } 
 ?>
 <html>
-    <head>
-        <title>Дизайн студия OX2.ru - игра Угадай число</title>
+    <head>Find the number</title>
     </head>
 </html>
 <body>
     <h2><?php echo $message; ?></h2>
     <form method="post">
-        <input type="text" value="<?php echo $chislo ?>" name="chislo" /> 
+        <input type="text" value="<?php echo $fuckednumber ?>" name="fuckednumber" /> 
 
-        <input type="submit" name="ugadat" value="Угадать" /><br/>
+        <input type="submit" name="ugadat" value="Divine" /><br/>
 
-        <input type="hidden" name="hidden_chislo" value="<?php echo $hidden_chislo ?>" />
+        <input type="hidden" name="hidden_fuckednumber" value="<?php echo $hidden_fuckednumber ?>" />
     </form>
 </body>
 </html>
